@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Flashcard Tiếng Nhật - Learn Japanese</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon (Optional - có thể thay đổi) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+    <!-- ═══════════════════════════════════════════════════════════════
+                            HOME SCREEN - Chọn Cấp Độ
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="homeScreen" class="container">
+        <h1>📚 日本語フラッシュカード</h1>
+        <p class="subtitle">Chọn cấp độ để bắt đầu học</p>
+        
+        <div class="level-grid">
+            <!-- Card N5 -->
+            <div class="level-card" data-level="n5" onclick="selectLevel('n5')">
+                <h2>N5</h2>
+                <p>Sơ Cấp</p>
+                <div class="word-count">0 từ vựng</div>
+            </div>
+
+            <!-- Card N4 -->
+            <div class="level-card" data-level="n4" onclick="selectLevel('n4')">
+                <h2>N4</h2>
+                <p>Trung Cấp Sơ</p>
+                <div class="word-count">0 từ vựng</div>
+            </div>
+
+            <!-- Card N3 -->
+            <div class="level-card" data-level="n3" onclick="selectLevel('n3')">
+                <h2>N3</h2>
+                <p>Trung Cấp</p>
+                <div class="word-count">0 từ vựng</div>
+            </div>
+
+            <!-- Card Trên Trường -->
+            <div class="level-card" data-level="school" onclick="selectLevel('school')">
+                <h2>🏫</h2>
+                <p>Trên Trường</p>
+                <div class="word-count">0 từ vựng</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+                        LESSON SCREEN - Chọn Bài Học
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="lessonScreen" class="container hidden">
+        <button class="back-btn" onclick="goHome()">
+            ← Về Trang Chủ
+        </button>
+
+        <div class="screen-header">
+            <h1 id="lessonTitle">N5 - Sơ Cấp</h1>
+            <p id="lessonSubtitle">Chọn bài học để bắt đầu</p>
+        </div>
+
+        <div class="lesson-grid" id="lessonGrid">
+            <!-- Danh sách bài học sẽ được render động bởi JavaScript -->
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+                        STUDY SCREEN - Học Flashcard
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="studyScreen" class="container hidden">
+        <button class="back-btn" onclick="goBackToLessons()">
+            ← Quay Lại
+        </button>
+
+        <div id="studyContainer">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p class="progress-text" id="progressText">0 / 0</p>
+
+            <!-- Flashcard -->
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <!-- Mặt Trước - Hiển thị Kanji + Kana -->
+                    <div class="card-face card-front">
+                        <div class="kanji" id="cardKanji">私</div>
+                        <div class="kana" id="cardKana">わたし</div>
+                    </div>
+
+                    <!-- Mặt Sau - Hiển thị Nghĩa + Ví dụ -->
+                    <div class="card-face card-back">
+                        <div class="meaning" id="cardMeaning">Tôi</div>
+                        <div class="example" id="cardExample">私は学生です。(Tôi là học sinh)</div>
+                    </div>
+                </div>
+                <p class="flip-hint">💡 Click vào thẻ để lật xem nghĩa</p>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="control-buttons">
+                <button class="control-btn btn-wrong" onclick="markAsWrong()">
+                    ❌ Chưa Thuộc
+                </button>
+                <button class="control-btn btn-correct" onclick="markAsCorrect()">
+                    ✅ Đã Thuộc
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+                            JAVASCRIPT FILES
+    ═══════════════════════════════════════════════════════════════ -->
+    
+    <!-- Load database trước -->
+    <script src="data.js"></script>
+    
+    <!-- Load logic app sau -->
+    <script src="script.js"></script>
+</body>
+</html>
